@@ -11,12 +11,6 @@ LC:	*.lhs
 #	$(GHC) -package mtl -O2 -Wall --make Main.lhs -o LC
 	stack build --copy-bins --local-bin-path .
 
-top.dvi: top.tex $(TEXFILES)
-	latex top.tex && latex top.tex
-
-top.ps:	top.dvi
-	dvips -t A4 top.dvi -o top.ps
-
 top.pdf: top.tex $(TEXFILES)
 	pdflatex top.tex && pdflatex top.tex
 
@@ -30,4 +24,4 @@ timing:	LC
 
 .PHONY:	clean
 clean:
-	rm -f *.hi *.o LC top.pdf top.ps top.dvi top.log top.aux $(TEXFILES)
+	rm -f *.hi *.o LC top.pdf top.log top.aux $(TEXFILES)
