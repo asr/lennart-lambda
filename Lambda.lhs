@@ -3,12 +3,18 @@ $\lambda$-calculus together with a parser and a printer for it.
 It also exports a simple type of identifiers that parse and
 print in a nice way.
 
+> {-# LANGUAGE CPP #-}
+>
 > module Lambda(LC(..), freeVars, allVars, Id(..)) where
 > import Data.List(span, union, (\\))
 > import Data.Char(isAlphaNum)
 > import Text.PrettyPrint.HughesPJ(Doc, renderStyle, style, text,
 >            (<>), (<+>), parens)
 > import Text.ParserCombinators.ReadP
+>
+#if MIN_VERSION_base(4,11,0)
+> import Prelude hiding ((<>))
+#endif
 
 The LC type of $\lambda$ term is parametrized over the type of the variables.
 It has constructors for variables, $\lambda$-abstraction, and application.

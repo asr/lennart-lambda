@@ -7,8 +7,9 @@ TEXFILES = DeBruijn.tex HOAS.tex IdInt.tex Lambda.tex Main.tex Simple.tex Unique
 .lhs.tex:
 	awk -f bird2code.awk $< > $*.tex
 
+# Tested with GHC 8.4.3.
 LC:	*.lhs
-	$(GHC) -package mtl -O2 -Wall --make Main.lhs -o LC
+	$(GHC) -O2 -Wall Main.lhs -o LC
 
 LC-stack: *.lhs
 	stack build --copy-bins --local-bin-path .
